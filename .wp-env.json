@@ -1,0 +1,11 @@
+{
+  "core": "https://ja.wordpress.org/latest-ja.zip",
+  "plugins": [],
+  "themes": ["./nagayoshi-kougei"],
+  "port": 14013,
+  "env": {
+    "tests": {
+      "port": 14012
+    }
+  }
+}
