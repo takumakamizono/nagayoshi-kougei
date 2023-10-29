@@ -649,70 +649,7 @@ main {
     justify-content: center;
   }
 }
-.recruit {
-  @extend .content-width;
-  @extend .mb-lg;
-  &__btn {
-    text-align: center;
-    & > a {
-      width: 100%;
-      max-width: 300px;
-      border: 1px solid $cBlack;
-      &::after {
-        content: "\f054";
-        font-family: "Font Awesome 5 free";
-        font-weight: 600;
-        position: absolute;
-        right: 10px;
-      }
-    }
-  }
-}
-.inquiry {
-  @extend .content-width;
-  @extend .mb-lg;
-  &__btn {
-    text-align: center;
-    & > a {
-      background: $cBtnColor;
-      width: 100%;
-      max-width: 300px;
 
-      color: $cWhite;
-      &::after {
-        content: "\f054";
-        font-family: "Font Awesome 5 free";
-        font-weight: 600;
-        position: absolute;
-        right: 10px;
-      }
-    }
-  }
-}
-.info {
-  &-arrow {
-    position: relative;
-    left: 50%;
-    bottom: 50px;
-
-    z-index: 2;
-    height: 98px;
-    width: 22px;
-    overflow: hidden;
-  }
-  &-contents {
-    @extend .mb-lg;
-    text-align: center;
-    & > h3 {
-      @extend .mb-md;
-      font-size: 19px;
-      @include mq(md) {
-        font-size: 25px;
-      }
-      @include mq(lg) {
-        font-size: 36px;
-      }
-    }
 .news-infos {
   @extend .mb-lr;
   &__inner {
