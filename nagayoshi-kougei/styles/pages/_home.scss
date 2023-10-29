@@ -752,47 +752,53 @@ main {
 }
 
 .footer {
-  background: $mainColor;
-
   &__inner {
     padding: 60px 0;
     @extend .content-width;
     @extend .flex;
     justify-content: space-between;
+    align-items: center;
   }
+
   &__left {
-    flex-basis: 68%;
+    flex-basis: 49%;
   }
   &__right {
-    flex-basis: 30%;
+    flex-basis: 49%;
+    width: 100%;
   }
   &__nav {
     @extend .flex;
     justify-content: space-between;
     align-items: center;
-    display: none;
-    @include mq(lg) {
-      display: block;
-    }
   }
 
   &__ul {
     @extend .flex;
     list-style: none;
     padding: 0;
+    width: 100%;
   }
 
   &__li {
-    margin: 10px;
+    border-bottom: 1px solid $lightGray;
 
     @include mq(md) {
       margin-left: 0;
-      margin-right: 30px;
+
+      border-bottom: 0;
+      flex-basis: 50%;
     }
 
     & > a {
-      color: $cWhite;
+      font-size: clamp(12px, 3vw, 14px);
+      padding: 10px;
       text-decoration: none;
+      color: $main-txt;
+      display: inline-block;
+      @include mq(md) {
+        padding: 10px 20px;
+      }
     }
     &:last-child {
       & i {
@@ -802,42 +808,23 @@ main {
   }
 
   & .logo {
-    font-size: 17px;
-
-    @include mq(lg) {
-      font-size: 35px;
-      display: flex;
-      align-items: center;
-    }
-    &::before {
-      height: 24px;
-      width: 24px;
-      margin-right: 5px;
-      content: "";
-      display: inline-block;
-      vertical-align: middle;
-      background: url(./images/logo_white.png) no-repeat;
-      background-size: contain;
-      @include mq(lg) {
-        height: 35px;
-        width: 35px;
-      }
-    }
+    width: 150px;
   }
   &__address {
     margin-top: 15px;
     list-style: none;
     padding: 0;
     @extend .font-sm;
-    color: $cWhite;
+    color: $main-txt;
     @extend .mb-sm;
   }
   &__copyright {
-    background: $cWhite;
+    background: $cBlack;
     color: $main-txt;
     @extend .font-sm;
     text-align: center;
     padding: 30px 0;
+    color: $cWhite;
     & > span {
       display: block;
       @include mq(md) {
@@ -845,15 +832,9 @@ main {
       }
     }
   }
-  &__img {
-    & img {
-      margin: 0 auto;
-    }
-  }
 }
 
 .logo {
-  font-family: "Noto Serif JP", serif;
   font-size: 30px;
   display: flex;
   color: $cWhite;
@@ -880,39 +861,19 @@ main {
     border-radius: 5px;
   }
 
-  &.left {
-    left: -50px;
-
-    &.inview {
-      left: 50px;
-    }
-
-    & .side__inner {
-      transform-origin: top left;
-      transform: rotate(-90deg);
-      & > a {
-        background: linear-gradient(
-            135deg,
-            rgb(66 126 255 / 50%) 0%,
-            rgb(241 63 121 / 50%) 70%
-          )
-          no-repeat;
-        color: $cWhite;
-        box-shadow: -2px -1px 5px rgba(66, 126, 255, 0.2);
-      }
-    }
-  }
-
   &.right {
-    right: -50px;
+    right: -250px;
 
     &.inview {
-      right: 50px;
+      right: 0px;
     }
 
     & .side__inner {
       transform-origin: top right;
-      transform: rotate(90deg);
+    }
+  }
+}
+
 .contact {
   background: url(./images/contact-bg.png) no-repeat center;
   background-size: cover;

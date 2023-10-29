@@ -2,14 +2,17 @@
           <div class="footer__inner">
             <div class="footer__left">
           <div class="logo item">
-             株式会社 川原建設
+             <img src="<?= get_template_directory_uri(); ?>/images/logo.gif" alt="">
             </div> 
             <ul class="footer__address">
-              <li>〒899-5115　鹿児島県霧島市隼人町東郷1010</li>
-              <li>TEL : ０９９５−４２−０４１９</li>
-              <li>FAX : ０９９５−４３−１８８０</li>
+              <li>〒880-2214 宮崎県宮崎市高岡町高浜2238-4</li>
+              <li>TEL : 0985-82-0368</li>
+              <li>FAX : 0985-64-9666</li>
             </ul>    
-          <nav class="footer__nav">
+        
+            </div>
+            <div class="footer__right">
+            <nav class="footer__nav">
           <?php
                 $args=[
                   'menu'=>'footer-nav',
@@ -21,17 +24,9 @@
                 
                 ?>     
            </nav>
-            </div>
-            <div class="footer__right">
-            <div class="footer__img">
-              <a href="https://www.city-kirishima.jp/"target="_blank" rel="noopener">
-              <img src="<?= get_template_directory_uri(); ?>/images/kirishima-image.jpg" alt="霧島市のHP画像">
-              </a>
-            </div>
-       
           </div> 
         </div>
-        <div class="footer__copyright item">Copyright&copy; 株式会社 川原建設<span> All Rights Reserved.</span> </div>
+        <div class="footer__copyright item">Copyright&copy;2013 Nagayoshi-kougei,inc<span> All Rights Reserved.</span> </div>
         <div id="page_top"><a href="#"></a></div>
         </div>
         
