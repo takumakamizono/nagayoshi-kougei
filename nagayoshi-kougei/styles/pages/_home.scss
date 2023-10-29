@@ -403,6 +403,12 @@ main {
     }
   }
 }
+
+.banner {
+  @extend .mb-lr;
+  &__inner {
+    @extend .content-width1000;
+  }
 }
 
 .news {
