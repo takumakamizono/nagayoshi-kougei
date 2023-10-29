@@ -13,14 +13,21 @@ function add_async_defer_script($url) {
 
   function enqueue_scripts() {
     $version = '1.0.0';
+    $style_version = filemtime(get_stylesheet_directory() . '/style.css');
+    $script_version = filemtime(get_stylesheet_directory() . '/scripts/main.min.js');
     wp_enqueue_style('css-reset',DIRE.'/styles/vendors/css-reset.css',array(), $version);
-    wp_enqueue_style('fonts-adobi','https://use.typekit.net/bkx0sau.css', false);
-    wp_enqueue_style('fonts-googleapis','https://fonts.googleapis.com/css?family=Noto+Sans+JP:wght@300;500;700|family=Noto+Serif+JP:wght@300;500;700&display=swap', false);
+    wp_enqueue_style('fonts-googleapis','https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;800|family=Roboto+Condensed:wght@300;400;700;900&display=swap', false);
     wp_enqueue_style('swiper-bundle.min.css',DIRE.'/styles/vendors/swiper-bundle.min.css',array(), $version);
-    wp_enqueue_style('style.css',DIRE.'/style.css',array(), $version);
+    wp_enqueue_style('slick-theme.css','https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css',false);
+    wp_enqueue_style('slick.css','https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css',false);
+
+    wp_enqueue_style('style.css',DIRE.'/style.css',array(),  $style_version);
     wp_enqueue_script('fontawesome','https://kit.fontawesome.com/2bf622374b.js', false);
+    wp_enqueue_script('youtube.min.js', DIRE.  '/scripts/libs/youtube.min.js#defer', array(), $version);
     wp_enqueue_script('jquery-min', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js', false);
     wp_enqueue_script('jquery.js', DIRE.  '/scripts/libs/jquery.min.js#defer', array(), $version);
+    wp_enqueue_script('slick.js', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js',false);
+
     wp_enqueue_script('scroll-polyfill.js', DIRE.  '/scripts/vendors/scroll-polyfill.js#defer', array(), $version);
     wp_enqueue_script('gsap.min.js', DIRE.  '/scripts/vendors/gsap.min.js#defer', array(), $version);
     wp_enqueue_script('swiper-bundle.min.js', DIRE.  '/scripts/vendors/swiper-bundle.min.js#defer', array(), $version);
@@ -28,7 +35,7 @@ function add_async_defer_script($url) {
     wp_enqueue_script('scroll.js', DIRE.  '/scripts/libs/scroll.min.js#defer', array(), $version);
     wp_enqueue_script('text-animation.js', DIRE.  '/scripts/libs/text-animation.min.js#defer', array(), $version);
     wp_enqueue_script('mobile-menu.js', DIRE.  '/scripts/libs/mobile-menu.min.js#defer', array(), $version);
-    wp_enqueue_script('main.js', DIRE.  '/scripts/main.min.js#defer', array(), $version);
+    wp_enqueue_script('main.js', DIRE.  '/scripts/main.min.js#defer', array(), $script_version);
   }
   add_action('wp_enqueue_scripts', 'enqueue_scripts');
   
@@ -108,12 +115,12 @@ function redirect_thanks_page() {
 }
 
 function twpp_change_excerpt_length( $length ) {
-  return 20; 
+  return 40; 
 }
 add_filter( 'excerpt_length', 'twpp_change_excerpt_length', 999 );
 
 function twpp_change_excerpt_more( $more ) {
-  $html = '<a href="' . esc_url( get_permalink() ) . '">[...続きを読む]</a>';
+  $html = '<span>もっと見る</span>';
   return $html;
 }
 
