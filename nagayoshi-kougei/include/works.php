@@ -1,11 +1,9 @@
 <section class="works">
                 <div class="section-titles">
                   <h2 class="main-title">
-                    WORKS
+                    NEW WORKS
+                    <span>最新の制作物をご紹介！</span>
                   </h2>
-                  <p class="sub-title tween-animate-title">
-                  これまで弊社が手掛けた工事の一例をご紹介します
-                  </p>
                 </div>
                 <?php
                      $args=[
@@ -18,24 +16,28 @@
                     ?>
                       
                 <div class="works__inner">
+                  <ul class="works__list">
              <?php if($the_query->have_posts()): ?>   
               <?php while($the_query->have_posts()):$the_query->the_post(); ?>
                   <?php get_template_part('include/works-inside'); ?>
                   <?php endwhile; ?>
            <?php else: ?>
+            
 
-<div class="works__notInfo">
+<li class="works__notInfo">
                       <p>現在、施工実績は準備中です</p>
                     </div>
 
             <?php endif; ?>
 
-                  <div class="works__btn appear up">
+                 
+           </li>
+                </ul>
+                <div class="works__btn appear up">
                   <?php
                       $news = get_term_by('slug','works','category');
                       $news_link = get_term_link($news,'category')
                       ?>
-                    <a href="<?= esc_url($news_link); ?>"  class="btn slide-bg item">more</a>
+                    <a href="<?= esc_url($news_link); ?>"  class="btn slide-bg item">もっと見る</a>
                   </div>
-                </div>
               </section>   
