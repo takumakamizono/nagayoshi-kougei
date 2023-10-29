@@ -296,6 +296,113 @@ main {
     }
   }
 }
+
+.product {
+  @extend .mb-lr;
+  &__inner {
+    @extend .content-width;
+  }
+}
+.menu-list {
+  @extend .flex;
+  justify-content: space-between;
+  padding: 0;
+  &__item {
+    margin: 0 0 10px;
+    width: 100%;
+    height: 160px;
+    list-style: none;
+    &:hover {
+      .bg-blur-img {
+        filter: blur(5px);
+
+        transition: 0.2s ease-in-out;
+      }
+    }
+    @include mq(md) {
+      flex-basis: 49%;
+    }
+    @include mq(lg) {
+      flex-basis: 33%;
+      height: 220px;
+    }
+  }
+}
+.hovereffect {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+  &:hover {
+    & h2 {
+      transform: translateY(5px);
+    }
+    & .overlay {
+      background-color: rgba(68, 173, 228, 0.33);
+    }
+    & .info {
+      box-shadow: 0 0 5px #fff;
+      opacity: 1;
+      transform: scale(1);
+      transition: 0.3s 0.7s ease-out;
+    }
+  }
+  & .bg-blur-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  & .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    transition: all 0.4s cubic-bezier(0.88, -0.99, 0, 1.81);
+    padding-top: 56px;
+  }
+  & h2 {
+    padding: 6px 0 6px;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    font-size: 17px;
+    background: rgba(68, 173, 228, 0.8);
+    transform: translateY(45px);
+    transition: all 0.4s cubic-bezier(0.88, -0.99, 0, 1.81);
+    letter-spacing: 1px;
+    @include mq(lg) {
+      padding: 10px 0 10px;
+    }
+  }
+  & .info {
+    border: 1px solid #fff;
+    opacity: 0;
+    display: inline-block;
+    transition: none;
+    margin: 0;
+    border: none;
+    width: 100%;
+    font-size: 93%;
+    height: 100%;
+    line-height: 250px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: transparent;
+    margin: -80px 0 0;
+    width: calc(100% - 40px);
+    padding: 0;
+    @include mq(lg) {
+      height: 182px;
+      line-height: 210px;
+    }
+  }
+}
 }
 
 .news {
