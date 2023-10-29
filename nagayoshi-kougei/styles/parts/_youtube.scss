@@ -1,0 +1,34 @@
+.c-video {
+  //追記
+  &__frame {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 56.25%;
+    background-image: url(images/top-image.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    &.is-loaded {
+      iframe {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+  iframe {
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: -60px;
+    left: 0;
+    width: 100%;
+    height: calc(100% + 120px);
+    transition: 0.3s;
+    transition-property: opacity, visibility;
+  }
+}

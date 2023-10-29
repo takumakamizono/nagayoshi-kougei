@@ -8,6 +8,7 @@ class Main {
   }
 
   _init() {
+    new Youtube();
     new MobileMenu();
     this._scrollInit();
   }
