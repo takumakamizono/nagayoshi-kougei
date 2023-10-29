@@ -1,19 +1,20 @@
 @use "../globals" as *;
 
 body {
-  //font-family: "Noto Sans JP", sans-serif;
-  font-family: "Noto Serif JP", serif;
-  color: $main-txt;
-  // font-family: new-order, sans-serif;
+  font-family: "Roboto Condensed", "Noto Sans JP", sans-serif;
 }
 
 img {
+  width: 100%;
   max-width: 100%;
   vertical-align: bottom;
 }
 
 .mb-sm {
   margin-bottom: 16px !important;
+  @include mq(lg) {
+    margin-bottom: 25px !important;
+  }
 }
 
 .mb-md {
@@ -21,6 +22,15 @@ img {
 
   @include mq(lg) {
     margin-bottom: 60px !important;
+  }
+}
+.mb-lr {
+  margin-bottom: 40px !important;
+  @include mq(md) {
+    margin-bottom: 60px !important;
+  }
+  @include mq(lg) {
+    margin-bottom: 100px !important;
   }
 }
 .mb-lg {
@@ -31,8 +41,23 @@ img {
   }
 }
 
+.mt-md {
+  margin-top: 30px !important;
+
+  @include mq(lg) {
+    margin-top: 60px !important;
+  }
+}
+
 .pb-sm {
   padding-bottom: 16px !important;
+}
+.pb-md {
+  padding-bottom: 30px !important;
+
+  @include mq(lg) {
+    padding-bottom: 60px !important;
+  }
 }
 
 .pb-lg {
@@ -42,11 +67,32 @@ img {
     padding-bottom: 150px !important;
   }
 }
+.pt-md {
+  padding-top: 30px !important;
+
+  @include mq(lg) {
+    padding-top: 60px !important;
+  }
+}
+.pt-lr {
+  padding-top: 40px !important;
+  @include mq(md) {
+    padding-top: 60px !important;
+  }
+  @include mq(lg) {
+    padding-top: 100px !important;
+  }
+}
 
 .content-width {
   width: 90%;
   margin: 0 auto;
   max-width: $contentMaxWidth;
+}
+.content-width1000 {
+  width: 90%;
+  margin: 0 auto;
+  max-width: $contentMaxWidth1000;
 }
 
 .flex {
@@ -69,92 +115,89 @@ img {
 }
 
 // font
+.font-ssm {
+  font-size: clamp(12px, 3vw, 13px);
+}
 .font-sm {
-  font-size: 14px;
-
-  @include mq(lg) {
-    font-size: 16px;
-  }
+  font-size: clamp(13px, 3vw, 16px);
 }
 .font-md {
-  font-size: 17px;
-
-  @include mq(lg) {
-    font-size: 19px;
-  }
+  font-size: clamp(15px, 3vw, 19px);
 }
 .font-lr {
-  font-size: 17px;
-
-  @include mq(lg) {
-    font-size: 23px;
-  }
+  font-size: clamp(16px, 4vw, 28px);
 }
+
 .font-lg {
-  font-size: 25px;
-
-  @include mq(lg) {
-    font-size: 36px;
-  }
+  font-size: clamp(17px, 4vw, 36px);
 }
-.font-xl {
-  font-size: 28px;
 
-  @include mq(lg) {
-    font-size: 40px;
-  }
+.font-xl {
+  font-size: clamp(20px, 5vw, 40px);
 }
 .section-titles {
   text-align: center;
   @extend .mb-md;
 }
+.section-titles-left {
+  text-align: left;
+  @extend .mb-md;
+}
 
 .main-title {
-  @extend .font-xl;
-  font-family: new-order, sans-serif;
+  @extend .font-lg;
   margin-bottom: 0;
   display: block;
-  font-weight: 300;
-  color: $mainColor;
+  font-weight: 600;
+  color: $main-txt;
+  line-height: 1;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: -16px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 30px;
+    height: 10px;
+    background-size: cover;
+    background-image: url(./images/icon-pikapika.png);
+
+    @include mq(lg) {
+      top: -31px;
+      width: 55px;
+      height: 20px;
+    }
+  }
+  & > span {
+    display: block;
+    font-size: clamp(10px, 2vw, 36%);
+    letter-spacing: 0;
+    padding-top: clamp(10px, 2vw, 16px);
+  }
+}
+.main-title-left {
+  @extend .font-lg;
+  margin-bottom: 0;
+  display: block;
+  font-weight: 600;
+  color: $main-txt;
+  line-height: 1;
+  position: relative;
+
+  & > span {
+    display: block;
+    font-size: clamp(10px, 2vw, 36%);
+    letter-spacing: 0;
+    padding-top: clamp(10px, 2vw, 16px);
+  }
 }
 
 .sub-title {
   @extend .font-sm;
   @extend .mb-sm;
   color: $cSubTitle;
-}
-
-.arrow-downarrow {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 6px;
-  @include animation(
-    $name: kf-arrow-anime,
-    $iteration-count: infinite,
-    $duration: 2s,
-    $timing-function: linear
-  );
-}
-
-.arrow-scrolltext {
-  position: absolute;
-  transform: rotate(90deg);
-  color: rgba(255, 255, 255, 0.7);
-  left: -8px;
-  top: 11px;
-  font-size: 1.2em;
-}
-
-@keyframes kf-arrow-anime {
-  0%,
-  50%,
-  100% {
-    transform: translateY(-10%);
-  }
-  30% {
-    transform: none;
-  }
 }
 
 #page_top {
@@ -468,4 +511,25 @@ img {
       }
     }
   }
+}
+
+.slick-next {
+  right: 25px !important;
+  width: 50px;
+  height: 50px;
+}
+.slick-prev {
+  left: 25px !important;
+  width: 50px;
+  height: 50px;
+}
+.slick-arrow {
+  z-index: 2 !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #000; /*黒にする*/
+  opacity: 1;
+  font-size: 50px;
 }
