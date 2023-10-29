@@ -28,22 +28,27 @@ main {
   background: transparent;
   display: flex;
   align-items: center;
-  z-index: 100;
+  z-index: 1000;
   @include mq(lg) {
     height: $navHeight;
     background: $cWhite;
+    border-bottom: 2px solid $mainColor;
   }
 
   &.triggered {
-    background: rgba(46, 87, 149, 0.3);
+    background: rgba(255, 255, 255, 1);
     box-shadow: 0px 0 28px -3px rgba(102, 102, 102, 0.5);
+    border-bottom: 2px solid $mainColor-o;
   }
 
   &__inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @extend .content-width;
+    margin: 0 auto;
+    max-width: $contentMaxWidth;
+    width: 100%;
+    height: 100%;
   }
 
   &__nav {
@@ -51,11 +56,11 @@ main {
     justify-content: space-between;
     align-items: center;
     text-align: center;
-
     display: none;
-
     @include mq(lg) {
-      display: block;
+      display: flex;
+      align-items: center;
+      height: 100%;
     }
   }
 
@@ -64,54 +69,82 @@ main {
     align-items: center;
     list-style: none;
     padding: 0;
+    height: 100%;
   }
 
   &__li {
-    margin: 5px;
+    display: flex;
+    align-items: center;
     position: relative;
+    height: 100%;
     & > a {
-      color: $cWhite;
+      position: relative;
+      color: $main-txt;
       text-decoration: none;
       text-transform: uppercase;
       padding: 10px 15px;
+      height: 100%;
+      display: flex;
+      align-items: center;
     }
     &:not(:nth-child(5), :last-child) {
       &.current-menu-item {
         & > a {
           font-weight: 800;
-          border-bottom: 2px solid $cWhite;
+          &::after {
+            bottom: -1px;
+            height: 16px;
+            background-size: 16px auto;
+            position: absolute;
+            width: 100%;
+            content: "";
+            background-repeat: space repeat;
+            background-image: url(./images/bg_dot01.png);
+            left: 0;
+          }
         }
       }
       & > a {
         &:hover {
+          // color: $cOrange;
           font-weight: 800;
-          border-bottom: 2px solid $cWhite;
+          &::after {
+            bottom: -1px;
+            height: 16px;
+            background-size: 16px auto;
+            position: absolute;
+            width: 100%;
+            content: "";
+            background-repeat: space repeat;
+            // background-image: url(./images/bg_dot01.png);
+            left: 0;
+          }
         }
       }
     }
 
-    &:nth-child(5) {
-      @extend .btn;
+    &:last-child {
       background: $cBtnColor;
-      padding: 10px 15px;
-      box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
+      box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.3);
+      transition: 0.3s;
+      & > a {
+        padding: 10px 15px;
+        color: $cWhite;
+        font-weight: 800;
+      }
       &:hover {
-        background-color: $mainColor;
+        // background-color: $SubColor;
         box-shadow: none;
       }
     }
-    &:last-child {
-      & i {
-        font-size: 25px;
-      }
-    }
+
     & .sub-menu {
       position: absolute;
       left: 0;
-      top: 52px;
+      top: 80px;
       z-index: 4;
       background: rgba(255, 255, 255, 0.9);
-      width: 180px;
+      width: 200px;
       visibility: hidden;
       opacity: 0;
       transition: all 0.3s;
@@ -122,9 +155,6 @@ main {
       & li {
         border-bottom: solid 1px rgba(102, 102, 102, 0.2);
         display: flex;
-        &:nth-child(2) {
-          border-bottom: none;
-        }
         & > a {
           width: 100%;
           height: 100%;
@@ -145,31 +175,32 @@ main {
   }
 
   & .logo {
-    font-size: 18px;
+    height: 97%;
     justify-content: center;
-
     @include mq(md) {
       justify-content: flex-start;
-      font-size: 23px;
     }
     & > a {
+      height: 100%;
       text-decoration: none;
-      color: $cWhite;
+      color: $mainColor;
       display: flex;
       align-items: center;
-      &::before {
-        height: 24px;
-        width: 24px;
-        margin-right: 5px;
-        content: "";
-        display: inline-block;
-        vertical-align: middle;
-        background: url(./images/logo_white.png) no-repeat;
-        background-size: contain;
-        @include mq(lg) {
-          height: 30px;
-          width: 30px;
+    }
+    &__tit {
+      & span {
+        @extend .font-lr;
+        &:nth-child(1) {
+          font-size: 12px;
         }
+      }
+    }
+    &__img {
+      padding: 6px;
+      width: 30px;
+
+      @include mq(lg) {
+        width: 45px;
       }
     }
   }

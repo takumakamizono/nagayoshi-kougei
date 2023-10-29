@@ -1,7 +1,8 @@
 <div class="header__inner appear up">
             <h1 class="logo item">
               <a href="<?= esc_url(home_url('/')); ?>">
-             株式会社 川原建設
+             
+              <img src="<?= get_template_directory_uri(); ?>/images/logo.gif" alt="">
              </a>
            </h1>
             <nav class="header__nav">
@@ -20,5 +21,6 @@
               <span></span>
               <span></span>
               <span></span>
+              <img src="<?= get_template_directory_uri(); ?>/images/txt_menu01.png" alt="">
             </button>
           </div>
