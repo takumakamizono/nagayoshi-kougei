@@ -805,6 +805,12 @@ main {
         font-size: 36px;
       }
     }
+.news-infos {
+  @extend .mb-lr;
+  &__inner {
+    @extend .flex960;
+    justify-content: space-between;
+    @extend .content-width;
   }
 }
 
