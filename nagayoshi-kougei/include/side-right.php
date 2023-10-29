@@ -1,5 +1,8 @@
 <aside class="side right">
               <div class="side__inner">
-                <span class="tween-animate-title">&copy; Kawahara Construction </span>
+              <a  href="" class="" target="_blank" rel="noopener noreferrer">
+                <img src="<?= get_template_directory_uri(); ?>/images/facebook.gif" alt="">
+              </a>
+              
               </div>
             </aside>
