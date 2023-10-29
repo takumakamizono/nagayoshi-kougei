@@ -22,11 +22,16 @@ $cMenuOpen: $cWhite;
   }
 
   &__btn {
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
     background-color: unset;
     border: none;
     outline: none !important;
     cursor: pointer;
-
+    background: $mainColor;
     @include mq(lg) {
       display: none;
     }
@@ -42,6 +47,11 @@ $cMenuOpen: $cWhite;
       &:last-child {
         margin-bottom: 0;
       }
+    }
+
+    & > img {
+      width: 28px;
+      margin: 0 auto;
     }
   }
   &__cover {
