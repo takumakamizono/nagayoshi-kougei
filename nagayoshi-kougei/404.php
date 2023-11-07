@@ -15,7 +15,6 @@
         <?php get_template_part('include/hero'); ?>
           <div id="main-content">
            
-            <?php get_template_part('include/side-left'); ?>
             <main>
        
             <div class="page-content">
@@ -26,13 +25,15 @@
                 <p>恐れ入りますが、下のリンクからトップページへお戻りください。</p>
 
                 <div class="page-404__btn">
-                    <a class="btn" href="">トップページへ戻る</a>
+                    <a class="btn" href="<?= esc_url(home_url('/')); ?>">トップページへ戻る</a>
                 </div>
              </div>
                 
         </div>
           </div>        
             </main>
+            <?php get_template_part('include/contact'); ?>
+
             <?php get_template_part('include/side-right'); ?>
           
           </div>

@@ -50,3 +50,23 @@ $(function () {
     ],
   });
 });
+
+$(document).ready(function () {
+  $(".archive-list__dropdown").change(function () {
+    var selectedOption = $(this).find("option:selected");
+    var archiveLink = selectedOption.val();
+    if (archiveLink) {
+      window.location.href = archiveLink;
+    }
+  });
+});
+
+function redirectToArchive() {
+  var select = document.querySelector(".archive-list__dropdown");
+  var archiveLink = select.options[select.selectedIndex].value;
+
+  // ページリダイレクト
+  if (archiveLink) {
+    window.location.href = archiveLink;
+  }
+}

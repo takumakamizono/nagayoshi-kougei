@@ -4,14 +4,19 @@ $cMenuClose: $cWhite;
 $cMenuOpen: $cWhite;
 
 .mobile-menu {
-  display: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: fixed;
   right: 0;
-  top: 40px;
-  width: 270px;
-  @include mq(sm) {
-    width: 300px;
-  }
+  top: 0;
+  width: 100%;
+  height: 0;
+  z-index: -1;
+  background-color: $cBgGray;
+  margin-top: $navHeight-m;
+  transition: 0.5s;
+  overflow-x: hidden;
 
   & .logo {
     padding: 0 40px;
@@ -68,16 +73,21 @@ $cMenuOpen: $cWhite;
     z-index: 200;
   }
   &__main {
-    padding: 0;
+    padding: 30px 0;
     perspective: 2000px;
     transform-style: preserve-3d;
+    list-style: none;
+    flex-basis: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   &__item {
     position: relative;
-    list-style: none;
+
     display: block;
     transform: translate3d(0, 0, -1000px);
-    padding: 0 30px;
+    padding: 0 25px;
     transition: transform 0.3s, opacity 0.2s;
     opacity: 0;
     border-bottom: 1px dotted $mainColor;
@@ -107,29 +117,13 @@ $cMenuOpen: $cWhite;
       text-decoration: none !important;
       font-size: 14px;
     }
-    &:last-child {
-      &::after {
-        display: none;
-      }
-
-      & > a {
-        margin-left: 0;
-      }
-    }
   }
 }
 
 .menu-open {
-  & #container {
-    transform: translate(-265px, 0px);
-    box-shadow: 0 8px 40px -10px $mainColor-o;
-    @include mq(sm) {
-      transform: translate(-300px, 0px);
-    }
-  }
-
   & .mobile-menu {
-    display: block;
+    height: 100%;
+
     &__cover {
       opacity: 1;
       visibility: visible;

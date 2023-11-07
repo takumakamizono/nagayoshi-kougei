@@ -7,9 +7,9 @@
                 </div>
     <div class="contact__inner">
       <p>株式会社ナガヨシ巧芸では、文章が入ります文章が入ります文章が入ります文章が入ります文章が入ります文章が入ります...。
-      文章が入ります文章が入ります文章が入ります....お悩みの際はお気軽にご相談くださいませ。</p>
+      文章が入ります文章が入ります文章が入ります....お悩みの際はお気軽にお問合せくださいませ。</p>
       <div class="contact__btn up">
-        <a class="btn slide-bg item" href="">ご相談はこちらから</a>
+        <a class="btn slide-bg item" href="<?php echo home_url('/contact/'); ?>">お問い合わせはこちらから</a>
       </div>
 
     </div>

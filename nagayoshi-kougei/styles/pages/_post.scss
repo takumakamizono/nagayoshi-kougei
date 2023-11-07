@@ -2,19 +2,6 @@
 @use "../parts/common" as *;
 @use "../parts/button" as *;
 
-.notice {
-  @extend .content-width;
-  @extend .mb-lg;
-  &__notinfo {
-    text-align: center;
-    width: 100%;
-    & p {
-      padding-top: 80px;
-      @extend.mb-lg;
-    }
-  }
-}
-
 .single {
   min-height: 60vh;
   &__inner {
@@ -43,10 +30,13 @@
       font-size: 14px;
       @extend .mb-lg;
       &-img {
-        max-width: 600px;
         width: 100%;
         margin: 0 auto;
         @extend .mb-md;
+        height: 230px;
+        @include mq(lg) {
+          height: 330px;
+        }
         & > img {
           width: 100%;
           height: 100%;
@@ -76,6 +66,166 @@
     text-align: center;
     & > a {
       border: solid 1px $lightGray;
+    }
+  }
+}
+
+.works-list {
+  &__inner {
+    margin-bottom: 40px;
+    @include mq(lg) {
+      margin-bottom: 0;
+    }
+  }
+  &__block {
+    @extend .pb-md;
+    @include mq(md) {
+      max-width: 1000px;
+      width: 90%;
+      margin: 0 auto;
+    }
+    & > a {
+      text-decoration: none;
+      @extend .flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  &__img {
+    width: 100%;
+    height: 150px;
+    & > img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+    @include mq(md) {
+      flex-basis: 29%;
+
+      & > img {
+        height: 100%;
+      }
+    }
+  }
+  &__contents {
+    padding: 10px;
+    color: $main-txt;
+    flex-basis: 70%;
+    & > time {
+      font-size: 12px;
+      color: rgb(182, 182, 182);
+    }
+  }
+  &__title {
+    font-weight: 600;
+    @extend .font-md;
+    margin-bottom: 7px;
+    color: $cTextRed;
+  }
+  &__desc {
+    @extend .font-sm;
+  }
+  &__notinfo {
+    text-align: center;
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px 0;
+    &-inner {
+      & > p {
+        @extend .mb-lg;
+      }
+    }
+  }
+  &__not-btn {
+    & > a {
+      background: $cBtnColor;
+      color: $cWhite;
+    }
+  }
+}
+
+.archive-list {
+  width: 100%;
+  flex-basis: 28%;
+  &__block {
+    border-radius: 10px;
+    background: $cBgGray;
+    padding: 23px 18px 23px;
+    position: relative;
+    @extend .mb-md;
+  }
+  &__ul {
+    list-style: none;
+    padding: 0;
+    & > li {
+      border-bottom: 2px dotted $lightGray;
+      & > a {
+        display: block;
+        text-decoration: none;
+        color: $main-txt;
+        padding: 12px 15px;
+        @extend .font-sm;
+      }
+    }
+  }
+  &__childーul {
+    list-style: none;
+    & > li {
+      position: relative;
+      &::before {
+        position: absolute;
+        content: "";
+        background: $cBlack;
+        width: 15px;
+        height: 1px;
+        top: 50%;
+        left: -17px;
+      }
+      & > a {
+        display: block;
+        text-decoration: none;
+        color: $main-txt;
+        padding: 12px 15px;
+        @extend .font-sm;
+      }
+    }
+  }
+  &__tltle {
+    position: absolute;
+    top: -10px;
+    font-size: 1.2em;
+    font-weight: 700;
+  }
+  &__dropdown {
+    width: 100%;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 5px;
+  }
+}
+
+.news-flex {
+  @extend .mb-lg;
+  @extend .content-width;
+  @extend .flex960;
+  justify-content: space-between;
+  &__inner {
+    flex-basis: 65%;
+  }
+}
+.work-flex {
+  @extend .mb-lg;
+  @extend .content-width;
+  @extend .flex960;
+  justify-content: space-between;
+  &__inner {
+    @include mq(lg) {
+      flex-basis: 65%;
     }
   }
 }

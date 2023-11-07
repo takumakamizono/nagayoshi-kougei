@@ -6,7 +6,6 @@
   <body>
     <div id="global-container">
       <div id="container">
-        <div class="mobile-menu__cover"></div>
         <div class="nav-trigger"></div>
         <header class="header">
         <?php get_template_part('include/header'); ?>
@@ -30,7 +29,7 @@
         <?php get_template_part('include/footer'); ?>
   
       </div>
-      <?php get_template_part('include/mobile-menu');?>
+   
     </div>
     <?php wp_footer(); ?>
   </body>

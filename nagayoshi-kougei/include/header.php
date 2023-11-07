@@ -23,4 +23,5 @@
               <span></span>
               <img src="<?= get_template_directory_uri(); ?>/images/txt_menu01.png" alt="">
             </button>
+            <?php get_template_part('include/mobile-menu');?>
           </div>

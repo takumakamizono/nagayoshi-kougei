@@ -21,49 +21,75 @@ Template Post Type: page
         <div id="content">
         <?php get_template_part('include/hero'); ?>
           <div id="main-content">
-           
-            <?php get_template_part('include/side-left'); ?>
             <main>
             <?php if(have_posts()): ?>
             <?php while(have_posts()):the_post(); ?>
             <div class="page-content">
               <div class="page-content__inner">
-                  <?php get_template_part('include/breadcrumb'); ?> 
+
+              <?php get_template_part('include/breadcrumb'); ?> 
+              <div class="page-content__blocks">
                   <div class="site-map">
                   <div class="site-map__box">   
 <div class="site-map__top">               
-  <p><a href="<?php echo home_url(); ?>">TOPページ</a></p>
+  <p><a href="<?php echo home_url(); ?>">株式会社ナガヨシ工芸トップページ</a></p>
   </div> 
  
   
   <?php
-$slugs = ['thanks']; // 除外ページをスラッグで指定.
-?>
-<ul class="sm-list sm-list-page">
-<?php
-$ids = [];
-foreach ( $slugs as $page_slug ) {
-  $page = get_page_by_path( $page_slug );
-  array_push( $ids, $page->ID );
+$slugs = ['thanks', 'sitemap']; // 除外ページをスラッグで指定.
+
+// 任意の順序で表示したい固定ページのIDを配列で指定.
+$page_ids = [26,22, 24]; // ここに任意の固定ページのIDを追加.
+
+// 除外ページのIDを取得
+$exclude_ids = [];
+foreach ($slugs as $page_slug) {
+    $page = get_page_by_path($page_slug);
+    if ($page) {
+        $exclude_ids[] = $page->ID;
+    }
 }
 
-$exclude_ids = implode( ',', $ids );
+// 任意の順序で表示したい固定ページを取得
+$args = [
+    'post_type' => 'page',
+    'post__in' => $page_ids,
+    'orderby' => 'post__in', // ここで任意の順序を指定します
+    'post_status' => 'publish',
+    'posts_per_page' => -1,
+];
+$query = new WP_Query($args);
 
-wp_list_pages(
- [
-    'title_li' => '', // タイトルなし.
-    'exclude'  => $exclude_ids, // 除外ページIDの配列を指定.
- ]
-);
+// 固定ページのループ
 ?>
+<ul class="sm-list sm-list-page">
+    <?php
+    while ($query->have_posts()) {
+        $query->the_post();
+        // 除外ページは表示しないようにする
+        if (in_array(get_the_ID(), $exclude_ids)) {
+            continue;
+        }
+        ?>
+        <li>
+            <a href="<?php the_permalink(); ?>">
+                <?php the_title(); ?>
+            </a>
+        </li>
+        <?php
+    }
+    wp_reset_postdata();
+    ?>
 </ul>
-
   </div> 
-  <div class="site-map__box">   
+  
+  <!-- <div class="site-map__box">   
   <?php
+  $exclude_categories = [11,12,13,14]; // 除外したいカテゴリのIDを配列で指定
     $args=[
       
-      'exclude'=>3,
+      'exclude'=> $exclude_categories,
       'orderby' => 'name',
       'order' => 'ASC'
     ];
@@ -79,21 +105,75 @@ wp_list_pages(
       ?>
       <li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
       <?php endforeach; ?>
+      <?php wp_reset_postdata(); ?>
     </ul>
   <?php }; ?>
+  </div> -->
+  <!--  -->
+  <?php
+    
+    $categories = get_terms([
+        'taxonomy' => 'category',
+        'slug' => ['news', 'test'],
+        'orderby' => 'include',
+        'include' => array(5,1),
+    ]);
+    ?>
+    <div class="site-map__box">
+    <div class="site-map__top">               
+  <p><a href="">投稿ページ</a></p>
   </div> 
- 
+    <ul class="sm-list sm-list-post">
+        <?php foreach ($categories as $category) {
+            $category_link = get_term_link($category, 'category');
+            ?>
+            <li>
+                <a  href="<?= esc_url($category_link); ?>"><?= $category->name; ?>の投稿一覧</a>
+            </li>
+        <?php } ?>
+    </ul>
+    
+    </div>
+  <div class="site-map__box">
+  <?php
+  $args = array(
+    'post_type' => 'product',
+    'posts_per_page' => -1,
+    'orderby' => 'name',
+    'order' => 'ASC'
+  );
+  $post_type = 'product';
+  $post_type_object = get_post_type_object($post_type);
+  
+  $services = get_posts($args);
+  if ($services) {
+    if ($post_type_object) {
+  $post_type_name = $post_type_object->labels->menu_name;
+  $post_type_link = get_post_type_archive_link($post_type);
+  echo '<h2><a href="' . esc_url($post_type_link) . '">'. $post_type_name .'</a></h2>';
+} else {
+  echo '<h2><a href=""></a>Custom Post Type</h2>';
+}
+echo '<ul class="sm-list sm-list-post">';
+    foreach ($services as $post) {
+      setup_postdata($post);
+      echo '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
+    }
+    echo '</ul>';
+    wp_reset_postdata();
+  } else {
+    echo '<p>No services found.</p>';
+  }
+  ?>
 </div>
-
-
+</div>
+</div>
                 </div>
           </div>
             <?php endwhile; ?>
             <?php endif; ?>
-            
-             
-         
-             
+            <?php get_template_part('include/contact'); ?>
+
             </main>
             <?php get_template_part('include/side-right'); ?>
           

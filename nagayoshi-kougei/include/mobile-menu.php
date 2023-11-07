@@ -1,9 +1,4 @@
 <nav class="mobile-menu">
-        <div class="logo">
-         
-          <span>株式会社</span>
-          <span>川原建設</span>
-        </div>
         <?php
                 $args=[
                   'menu'=>'mobile-nav',
@@ -14,7 +9,9 @@
                 wp_nav_menu($args);
                 
                 ?>
-           
+              <?php get_template_part('include/contact'); ?>   
       </nav>
+
+
 
 

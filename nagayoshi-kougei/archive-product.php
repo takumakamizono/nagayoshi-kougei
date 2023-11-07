@@ -17,36 +17,33 @@
            
             <main>
               <?php get_template_part('include/breadcrumb'); ?> 
-               <section class="news">
+               <section class="works-list ">
                   <?php if(have_posts()): ?> 
-                    <div class="news-flex">
-
-                    <div class="news__inner news-flex__inner">               
-                    <ul class="news__list appear right"> 
+                    <div class="work-flex">   
+                    <div class="works-list__inner work-flex__inner ">             
                     <?php while(have_posts()):the_post(); ?>
                     <?php get_template_part('include/notice-inside'); ?> 
-                <?php endwhile; ?>  
-                </ul>      
+                <?php endwhile; ?>           
                 <?php if(function_exists('wp_pagenavi')){wp_pagenavi();}  ?>
                 </div>
-              <?php get_template_part('include/news-categories'); ?>  
-             
-              </div>  
+              <?php get_template_part('include/product-taxlist'); ?>             
+
+                </div>    
                   <?php else: ?>
-                    
-                    <div class="news__notinfo">
+                    <div class="works-list__notinfo">
+                    <div class="works-list__notinfo-inner">
                       <p>新しい情報はありません</p>
-                      <div class="news__btn">
+                     
+                      <div class="works-list__not-btn">
                       <a class="btn slide-bg" href="<?= esc_url(home_url('/')); ?>">トップページへ戻る</a> 
                       </div>
                     </div>
-                    
+                    </div>
+                  
                 
-                  <?php endif; ?>   
-                    
-                          
-
-              </section>    
+                  <?php endif; ?>          
+                
+              </section>
             <?php get_template_part('include/contact'); ?>
 
             </main>

@@ -26,7 +26,23 @@
            </nav>
           </div> 
         </div>
-        <div class="footer__copyright item">Copyright&copy;2013 Nagayoshi-kougei,inc<span> All Rights Reserved.</span> </div>
+        <div class="copyright">
+          <div class="copyright__inner">
+        <nav class="copyright__nav">
+          <?php
+                $args=[
+                  'menu'=>'footer-nav2',
+                  'menu_class'=>'copyright__ul',
+                  'container'=>false,
+                
+                ];
+                wp_nav_menu($args);
+                
+                ?>     
+           </nav>
+        <p class="copyright__p">Copyright&copy;2013 Nagayoshi-kougei,inc<span> All Rights Reserved.</span> </p>
+        </div>
+        </div>
         <div id="page_top"><a href="#"></a></div>
         </div>
         

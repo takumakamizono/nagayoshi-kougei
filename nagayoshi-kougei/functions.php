@@ -16,7 +16,7 @@ function add_async_defer_script($url) {
     $style_version = filemtime(get_stylesheet_directory() . '/style.css');
     $script_version = filemtime(get_stylesheet_directory() . '/scripts/main.min.js');
     wp_enqueue_style('css-reset',DIRE.'/styles/vendors/css-reset.css',array(), $version);
-    wp_enqueue_style('fonts-googleapis','https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;800|family=Roboto+Condensed:wght@300;400;700;900&display=swap', false);
+    wp_enqueue_style('fonts-googleapis','https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;800&family=Roboto+Condensed:wght@300;400;700;900&display=swap', false);
     wp_enqueue_style('swiper-bundle.min.css',DIRE.'/styles/vendors/swiper-bundle.min.css',array(), $version);
     wp_enqueue_style('slick-theme.css','https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css',false);
     wp_enqueue_style('slick.css','https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css',false);
@@ -70,6 +70,21 @@ foreach($cats as $cat){
         echo esc_html($cat->name);
         echo '</li>';
     }
+  }
+}
+
+function custom_taxonomy_labels() {
+  $post_id = get_the_ID(); // 現在の投稿のIDを取得
+
+  // カスタムタクソノミーのタームを取得
+  $custom_taxonomy_terms = get_the_terms($post_id, 'kind'); // 'your_custom_taxonomy' を実際のカスタムタクソノミーの名前に置き換えてください
+
+  if ($custom_taxonomy_terms && !is_wp_error($custom_taxonomy_terms)) {
+      
+      foreach ($custom_taxonomy_terms as $term) {
+          echo '<li>' . esc_html($term->name) . '</li>';
+      }
+  
   }
 }
 /**
@@ -130,10 +145,11 @@ add_filter( 'excerpt_more', 'twpp_change_excerpt_more' );
 
 add_filter('use_block_editor_for_post',function($use_block_editor,$post){
   if($post->post_type==='page'){
-      if(in_array($post->post_name,['top_slide','sub_topimg','sitemap'])){
+      if(in_array($post->post_name,['top_slide','sub_topimg','sitemap','works','subhead-img'])){
           remove_post_type_support('page','editor');
           return false;
       }
   }
   return $use_block_editor;
 },10,2);
+

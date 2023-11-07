@@ -9,6 +9,9 @@
                     </div>
             
             <div class="works__contents">
+            <ul class="cat">
+                       <?php custom_taxonomy_labels(); ?>
+                       </ul>
             <time><?php the_time( get_option( 'date_format' ) ); ?></time>  
                     <p class="works__title"><?php the_title(); ?></p>
                      <div class="works__desc">

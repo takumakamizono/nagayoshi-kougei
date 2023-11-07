@@ -4,11 +4,11 @@ body {
   font-family: "Roboto Condensed", "Noto Sans JP", sans-serif;
 }
 
-img {
-  width: 100%;
-  max-width: 100%;
-  vertical-align: bottom;
-}
+// img {
+//   width: 100%;
+//   max-width: 100%;
+//   vertical-align: bottom;
+// }
 
 .mb-sm {
   margin-bottom: 16px !important;
@@ -57,6 +57,15 @@ img {
 
   @include mq(lg) {
     padding-bottom: 60px !important;
+  }
+}
+.pb-lr {
+  padding-bottom: 40px !important;
+  @include mq(md) {
+    padding-bottom: 60px !important;
+  }
+  @include mq(lg) {
+    padding-bottom: 100px !important;
   }
 }
 
@@ -119,10 +128,12 @@ img {
   font-size: clamp(12px, 3vw, 13px);
 }
 .font-sm {
-  font-size: clamp(13px, 3vw, 16px);
+  font-size: clamp(14px, 3vw, 16px);
+  line-height: 1.6;
 }
 .font-md {
   font-size: clamp(15px, 3vw, 19px);
+  line-height: 1.6;
 }
 .font-lr {
   font-size: clamp(16px, 4vw, 28px);
@@ -139,9 +150,9 @@ img {
   text-align: center;
   @extend .mb-md;
 }
+
 .section-titles-left {
   text-align: left;
-  @extend .mb-md;
 }
 
 .main-title {
@@ -193,11 +204,16 @@ img {
     padding-top: clamp(10px, 2vw, 16px);
   }
 }
+.image-title {
+  width: 15%;
+  min-width: 150px;
+}
 
 .sub-title {
-  @extend .font-sm;
+  @extend .font-md;
   @extend .mb-sm;
-  color: $cSubTitle;
+  color: $main-txt;
+  font-weight: 600;
 }
 
 #page_top {
@@ -237,6 +253,7 @@ img {
   color: $main-txt;
   font-size: 10px;
   &__inner {
+    @extend .content-width;
     padding: 10px 0 40px 0;
     @include mq(lg) {
       padding: 10px 0 80px 0;
@@ -292,7 +309,7 @@ img {
 /* Contact Form7 */
 
 .contact7 {
-  max-width: 100%;
+  @extend .content-width1000;
   box-sizing: border-box;
   font-size: 12px;
   & input,
@@ -301,33 +318,41 @@ img {
     border: none;
     background: $cBgGray;
     padding: 15px 20px;
+    border-radius: 5px;
   }
-  & dt {
-    font-weight: normal;
-    margin-bottom: 20px;
+  & tr {
+    @extend .flex;
+    border-bottom: 2px dotted $lightGray;
+
+    padding: 20px 0;
+    @include mq(md) {
+      justify-content: space-between;
+      align-items: center;
+    }
+    @include mq(lg) {
+      padding: 40px 0;
+    }
+  }
+  & th {
+    font-weight: bold;
+    flex-basis: 28%;
+    margin-bottom: 10px;
     & > p {
       display: flex;
       align-items: center;
     }
     @include mq(lg) {
       margin-bottom: 0;
-      float: left;
-      clear: left;
-      width: 35%;
-      padding: 5px 10px 5px 0;
     }
   }
-  & dd {
-    margin: 0 0 30px 0;
-    @include mq(lg) {
-      margin-left: 35%;
-    }
+  & td {
+    flex-basis: 70%;
   }
   & .must {
-    background: #ff1a00;
+    background: $cBtnColor;
   }
   & .optional {
-    background: #999;
+    background: $lightGray;
   }
   & .optional,
   & .must {
@@ -345,52 +370,47 @@ img {
 }
 
 .btn_contact7 {
+  @extend .content-width1000;
   text-align: center;
   margin-top: 30px;
   & input {
     height: 50px;
     width: 100%;
     max-width: 400px;
-    background-color: $cBgGray;
+
     color: $main-txt;
     font-size: 1.1em;
     font-weight: bold;
     letter-spacing: 0.2em;
-    border: 1px solid $cBgGray;
-    -webkit-transition: 0.3s;
-    -moz-transition: 0.3s;
-    -o-transition: 0.3s;
-    -ms-transition: 0.3s;
+
     transition: 0.3s;
     @include mq(lg) {
       width: 70%;
-      background-color: $cBgGray;
 
       font-size: 1.1em;
       font-weight: bold;
       letter-spacing: 0.2em;
-      border: 1px solid $cBgGray;
-      -webkit-transition: 0.3s;
-      -moz-transition: 0.3s;
-      -o-transition: 0.3s;
-      -ms-transition: 0.3s;
+
       transition: 0.3s;
     }
     &:hover {
       background-color: $cWhite;
-      color: $cBgGray;
+
       @include mq(lg) {
         background-color: $cWhite;
-        color: $cBgGray;
       }
     }
   }
+}
+.wpcf7-spinner {
+  display: none;
 }
 
 /*ページナビ-----------------------------------------------------------*/
 
 .wp-pagenavi {
-  /* 全体 */
+  @extend .mt-md;
+  @extend .mb-sm;
   padding: 20px 0;
   font-size: 12px;
   text-align: center;
@@ -399,15 +419,19 @@ img {
   }
   & > a {
     color: $mainColor;
+    border-radius: 20px;
   }
   & .pages {
     /* 左の表記 */
     margin-right: 20px;
+
     display: none;
   }
   & span.current {
-    background: $lightGray;
-    color: $cBlack;
+    background: $mainColor;
+    color: $cWhite;
+    border-radius: 20px;
+    border: none;
   }
   & .previouspostslink,
   & .nextpostslink {
@@ -531,5 +555,53 @@ img {
 .slick-next:before {
   color: #000; /*黒にする*/
   opacity: 1;
-  font-size: 50px;
+  font-size: 30px;
+}
+
+.style-dl {
+  @extend .font-ssm;
+  & dt {
+    float: left;
+    clear: left;
+    width: 70px;
+    padding: 10px 0;
+  }
+  & dd {
+    padding: 10px 0 11px 80px;
+    border-bottom: 1px solid;
+    @include mq(md) {
+    }
+
+    & ul {
+      padding: 0;
+      list-style: none;
+    }
+  }
+}
+
+.cat {
+  min-width: 55px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 10px;
+  font-weight: 600;
+  margin-right: 6px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  flex-basis: 18%;
+
+  & li {
+    list-style-type: none;
+    text-align: center;
+    background-color: $mainColor;
+    color: $cWhite;
+    padding: 2px 4px;
+    border-radius: 2px;
+    display: inline;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }

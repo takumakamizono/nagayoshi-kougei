@@ -5,7 +5,7 @@
 <?php the_post_thumbnail(); ?>
 </div>
 <div class="news__sentence">                             
-                       <ul class="cat fontSerif">
+                       <ul class="cat">
                        <?php categories_label(); ?>
                        </ul>
                    
