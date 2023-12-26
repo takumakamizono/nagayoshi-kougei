@@ -3,13 +3,13 @@
 .btn {
   position: relative;
   display: inline-block;
-  background-color: $cWhite;
+  background-color: $cBtnColor;
 
   padding: 10px 40px;
-  margin: 10px auto;
+
   cursor: pointer;
   transition: all 0.3s;
-  color: $cBlack;
+  color: $cWhite;
   text-decoration: none !important;
 
   &.float:hover {

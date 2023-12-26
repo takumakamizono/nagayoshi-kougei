@@ -19,9 +19,9 @@
             <?php $page_slug = get_post_field('post_name', get_post());?>
             <?php if(have_posts()): ?>
             <?php while(have_posts()):the_post(); ?>
+            <?php get_template_part('include/breadcrumb'); ?> 
             <div class="page-content">
               <div class="page-content__inner">
-                  <?php get_template_part('include/breadcrumb'); ?> 
                   <?php if ($page_slug === 'about'): ?>
                     <?php get_template_part('page-include/page-about'); ?>
                    

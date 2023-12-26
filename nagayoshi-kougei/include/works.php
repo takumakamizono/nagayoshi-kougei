@@ -10,10 +10,8 @@
                     ?>
 <section class="works">
                 <div class="section-titles">
-                  <h2 class="main-title">
-                    NEW WORKS
-                    <span>最新の制作物をご紹介！</span>
-                  </h2>
+                  <h2 class="main-title">NEW WORKS</h2>
+                  <span class="sub-title">最新の制作物をご紹介！</span>
                 </div>
             
                       

@@ -3,16 +3,17 @@
 <div class="section-titles">
                   <h2 class="main-title">
                     Message
-                    <span>ごあいさつ</span>
+                    
                   </h2>
+                  <span class="sub-title">ごあいさつ</span>
                 </div>
     <div class="about-mess__inner">
         <div class="about-mess__desc">
-        <p>株式会社 ナガヨシ巧芸は1970年4月創業以来、宮崎を中心に看板を制作・施工してまいりました。<br>
-私どもは、より良い看板を制作するすることは「お客様の繁栄・発展」をお手伝いをする仕事であると考えております。<br>
-「ぐっ！とくるサイン」で「はっ！とする視覚伝達法をプランニング」するをモットーに、お客様のイメージを形にしていきます。<br>
-屋外・店舗サイン、各種印刷、基礎工事等、お気軽に声をおかけください！<br>
-今後とも、「株式会社　ナガヨシ巧芸」をよろしくお願い致します。</p>
+        <p>1970年4月に創業した株式会社ナガヨシ巧芸は、宮崎を中心に九州全域で長年にわたり看板の制作と施工に取り組んでまいりました。<br>
+        私たちは、お客様の繁栄と発展を支援するため、より良い看板を制作することを使命と考えています。<br>
+        長年の経験により培った看板制作と土木技術を活かし、迅速かつ柔軟にお客様の要望にお応えすることをモットーに、地域に根ざした看板を制作してまいります。<br>
+        屋外や店舗サイン、様々な印刷物、基礎工事など、どんなご要望にもお気軽にお声がけください。<br>
+        今後も株式会社ナガヨシ巧芸をどうぞよろしくお願い致します。</p>
 </div>
 <div class="about-mess__name">
     <h3>株式会社　ナガヨシ巧芸</h3>
@@ -28,8 +29,9 @@
 <div class="section-titles">
                   <h2 class="main-title">
                   COMPANY INFORMATION
-                    <span>会社情報</span>
+                    
                   </h2>
+                  <span class="sub-title">会社情報</span>
                 </div>
     <div class="about-info__inner">
         <ld class="style-dl">
@@ -81,5 +83,41 @@
 
 
     </div>
+    <div class="section-titles">
+    <h2 class="main-title">
+                  history
+                    
+                  </h2>
+                  <span class="sub-title">沿革</span>
+                </div>
+    <div class="about-info__inner">
+        <ld class="style-dl">
+            <dt>1970年4月</dt>
+            <dd>永吉巧芸を創業</dd>
+            <dt>2002年4月</dt>
+            <dd>
+            現社長が事業を継承
+            </dd>
+            <dt>2002年4月</dt>
+            <dd>これまでの土木経験を活かし新規事業として看板等における基礎工事事業を始める</dd>
+            <dt>2011年2月</dt>
+            <dd>法人化に伴い、名称を株式会社ナガヨシ巧芸に変更</dd>
+            <dt>2008年</dt>
+            <dd>
+            MiMaki社の大型インクジェットプリンターを導入
+            </dd>
+            <dt>2017年</dt>
+            <dd>
+            2台目としてラテックス大型インクジェットプリンターを導入
+            </dd>
+            <dt>2022年</dt>
+            <dd>
+            3台目としてエプソン大型インクジェットプリンターを導入
+            </dd>
+        </ld>
+
+
+    </div>
 </section>
+
 <?php get_template_part('include/map'); ?>

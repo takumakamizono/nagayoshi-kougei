@@ -1,31 +1,17 @@
-<div id="post-<?php the_ID(); ?>" class="works-list__block">
-<a href="<?php the_permalink(); ?>">
-<div class="works-list__head">
-    <div class="works-list__head-left">
-<h3 class="works-list__title"><?php the_title(); ?></h3>
-<time><?php the_time( get_option( 'date_format' ) ); ?></time>  
-                  
-                       </div>
-                       <div class="works-list__head-right">
-                        <span class="" >詳細を見る </span>
-                       </div>
-                       </div>
-                       <ul class="cat">
+<div class="pastWork__block bg-gray pt-md">
+                        <div class="pastWork-flex">
+                          <div class="contents-area-left">
+                            <h3 class="main-title-left">DETAIL DATA</h3>
+                            <ul class="cat">
                        <?php custom_taxonomy_labels(); ?>
+                     
                        <?php custom_taxonomy_label_tag(); ?>
-
                        </ul>
-                       <div class="works-list__block-inner">
-    <div class="works-list__img">
-            <?php the_post_thumbnail('full'); ?>    
-            </div>
-    
-        <div class="works-list__contents">
-                    <div class="works-list__desc">
-                   <?php
-$table = get_field( 'archive_detail_data' );
+                       
+<?php
+$table = get_field( 'detail_data' );
 if ( ! empty ( $table ) ) {
-    echo '<table class="property-archiveTable"">';
+    echo '<table class="detaildate-table">';
         if ( ! empty( $table['caption'] ) ) {
             echo '<caption>' . $table['caption'] . '</caption>';
         }
@@ -55,10 +41,18 @@ if ( ! empty ( $table ) ) {
 }
 ?>
 
-                    </div>
-                    </div>
-        </div> 
-          </a>
-</div>
-
-
+                          </div>
+                          <div class="contents-area-right ">
+                    
+                          <?php get_template_part('include/product-taxlist'); ?>             
+            
+            <div class="contents-area-right__btn">
+              
+              <a href="<?= home_url('/contact/'); ?>"class="btn slide-bg" >
+               お問い合わせはこちら
+              </a>
+          
+                      </div>
+            
+                          </div>
+                        </div>

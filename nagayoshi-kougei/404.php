@@ -18,16 +18,17 @@
             <main>
        
             <div class="page-content">
+              <?php get_template_part('include/breadcrumb'); ?> 
               <div class="page-content__inner">
-                  <?php get_template_part('include/breadcrumb'); ?> 
              <div class="page-404">
-                <p>お探しのページは見つかりませんでした。</p>
-                <p>恐れ入りますが、下のリンクからトップページへお戻りください。</p>
+                <p>お探しのページは見つかりませんでした。<br>
+                恐れ入りますが、下のリンクからトップページへお戻りください。</p>
 
-                <div class="page-404__btn">
+              
+             </div>
+             <div class="page-404__btn">
                     <a class="btn" href="<?= esc_url(home_url('/')); ?>">トップページへ戻る</a>
                 </div>
-             </div>
                 
         </div>
           </div>        

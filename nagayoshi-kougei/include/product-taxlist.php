@@ -1,10 +1,16 @@
 <?php
 $custom_post_type = 'product';
 $custom_taxonomy = 'kind';
+$custom_taxonomy_location = 'location';
 
 // カスタム投稿タイプのカテゴリーリストを取得
 $categories = get_terms([
     'taxonomy' => $custom_taxonomy,
+    'orderby' => 'include', // ソート順
+    'parent' => 0,
+]);
+$tags = get_terms([
+    'taxonomy' => $custom_taxonomy_location,
     'orderby' => 'include', // ソート順
     'parent' => 0,
 ]);
@@ -86,5 +92,24 @@ wp_reset_postdata();
                 <?php endforeach; ?>
             </select>
         </div>
-    </aside>
+    
+<?php endif; ?>
+
+
+<?php if ($tags) : ?>
+    
+        <div class="archive-list__block">
+            <p class="archive-list__tltle">タグ</p>
+            <ul class="archive-list__ul">
+                <?php foreach ($tags as $tag) {
+                    $tag_link = get_term_link($tag, $custom_taxonomy_location);
+                    ?>
+                    <li>
+                        <a href="<?= esc_url($tag_link); ?>"><?= $tag->name; ?></a>
+                        
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+        </aside>
 <?php endif; ?>

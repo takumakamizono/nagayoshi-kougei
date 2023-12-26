@@ -17,7 +17,7 @@
           <div id="main-content"> 
             <main>
             <?php get_template_part('include/breadcrumb'); ?> 
-            <section class="works-lisx">
+            <section class="works-list">
         
              <?php if(have_posts()): ?>   
               <div class="work-flex">
@@ -35,10 +35,11 @@
 
                       <p>新しい情報はありません</p>
                      
-                      <div class="works-list__not-btn">
+                     
+                    </div>
+                    <div class="works-list__not-btn">
                       <a class="btn slide-bg" href="<?= esc_url(home_url('/')); ?>">トップページへ戻る</a> 
                       </div>
-                    </div>
                     </div>
                 
 

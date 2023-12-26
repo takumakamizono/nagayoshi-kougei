@@ -33,16 +33,9 @@ $printing0103 = get_field('printing_01_03', 26);
 
                 <div class="works-contents__inner">
                 
-                  <h2 class="image-title">
-                <img src="<?= get_template_directory_uri(); ?>/images/explain.gif" alt="こだわりタイトル画像" />
-                   
-                  </h2>
+                  
                 
-                <div class="works-contents__desc">
-                    <p>車を運転していても、遠くから見える屋外サインはお店の顔です。
-目立こと、一瞬で何をしているお店かわかることが大切です。
-ナガヨシ巧芸では、お客様のご要望をもとに、「屋外サインの企画・製作・施工」までトータルでサポートいたします。</p>
-             </div>
+                
              <div class="each-production">
              <h2 class="sub-title">
              屋外広告全般              
@@ -117,23 +110,11 @@ $printing0103 = get_field('printing_01_03', 26);
             </section>
             <section class="works-contents">
 <div class="section-titles">
-                  <h2 class="main-title">
+                  <h3 class="main-title">
                   店舗サイン企画・制作
-                  </h2>
+                  </h3>
                 </div>
-
                 <div class="works-contents__inner">
-                
-                  <h2 class="image-title">
-                <img src="<?= get_template_directory_uri(); ?>/images/explain.gif" alt="こだわりタイトル画像" />
-                   
-                  </h2>
-                
-                <div class="works-contents__desc">
-                    <p>店舗サインは、お客様に会社やお店のイメージを与える大切なものです。
-店舗への誘導や商品のアピールには重要なアイテムです。
-ナガヨシ巧芸では、お客様のご要望をもとに、「店舗サイン企画・制作・施工」までトータルでサポートいたします。</p>
-             </div>
              <div class="each-production">
              <h2 class="sub-title">
              案内板           
@@ -189,23 +170,12 @@ $printing0103 = get_field('printing_01_03', 26);
             </section>
             <section class="works-contents">
 <div class="section-titles">
-                  <h2 class="main-title">
+                  <h3 class="main-title">
                   各種印刷企画・制作
-                  </h2>
+                  </h3>
                 </div>
 
                 <div class="works-contents__inner">
-                
-                  <h2 class="image-title">
-                <img src="<?= get_template_directory_uri(); ?>/images/explain.gif" alt="こだわりタイトル画像" />
-                   
-                  </h2>
-                
-                <div class="works-contents__desc">
-                    <p>会社やお店をアピールするのに必要な、さまざまな広告印刷物の製作を行っております。
-ポスター、横断幕から名刺印刷まで、屋外・店舗サインと統一した製作が出来ます。
-ナガヨシ巧芸では、屋外・店舗サインと統一ご提案で、「各種印刷・制作」までトータルでサポートいたします。</p>
-             </div>
              <div class="each-production">
              <h2 class="sub-title">
              横断幕・懸垂幕             

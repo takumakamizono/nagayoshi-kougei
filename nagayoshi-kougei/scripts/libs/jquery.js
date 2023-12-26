@@ -36,12 +36,26 @@ $(function () {
     autoplay: true,
     adaptiveHeight: true,
     centerMode: true,
-    centerPadding: "20%",
-    slidesToShow: 2,
+    centerPadding: "10%",
+    slidesToShow: 4,
     dots: true,
     responsive: [
       {
-        breakpoint: 960,
+        breakpoint: 1900,
+        settings: {
+          slidesToShow: 3, // ブレイクポイント960px以下での表示数
+          centerPadding: "10%",
+        },
+      },
+      {
+        breakpoint: 1400,
+        settings: {
+          slidesToShow: 2, // ブレイクポイント960px以下での表示数
+          centerPadding: "10%",
+        },
+      },
+      {
+        breakpoint: 800,
         settings: {
           slidesToShow: 1, // ブレイクポイント960px以下での表示数
           centerPadding: "10%",
@@ -70,3 +84,17 @@ function redirectToArchive() {
     window.location.href = archiveLink;
   }
 }
+
+$(function () {
+  $(".pastWork-slider").slick({
+    autoplay: true,
+    arrows: false,
+    fade: true,
+    asNavFor: ".thumbnail",
+  });
+  $(".thumbnail").slick({
+    slidesToShow: 10,
+    asNavFor: ".pastWork-slider",
+    focusOnSelect: true,
+  });
+});

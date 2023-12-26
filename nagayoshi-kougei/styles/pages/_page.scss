@@ -3,6 +3,9 @@
 @use "../parts/button" as *;
 
 .page-content {
+  &__inner {
+    @extend .pt-lr;
+  }
   &__blocks {
     @extend .content-width;
     @extend .mb-lg;
@@ -143,15 +146,16 @@
     max-width: 800px;
     margin: 0 auto;
     width: 90%;
+    @extend .pb-md;
   }
 }
 
 .works-contents {
-  @extend .mb-md;
-  &:nth-child(odd) {
+  @extend .mb-lr;
+  &:nth-child(even) {
     background: $cBgGray;
-    @extend .pt-md;
-    @extend .pb-sm;
+    @extend .pt-lr;
+    @extend .pb-md;
   }
   &__inner {
     max-width: 800px;
@@ -168,6 +172,9 @@
       padding: 30px 40px;
     }
   }
+  & .main-title {
+    @extend .font-lr;
+  }
 }
 .each-production {
   @extend .mb-md;
@@ -182,6 +189,32 @@
       margin-bottom: 10px;
       @include mq(md) {
         flex-basis: 33%;
+      }
+    }
+  }
+  & .sub-title {
+    position: relative;
+    border-bottom: 2px solid $cBlue;
+    padding: 10px 10px 5px 50px;
+    margin-bottom: 10px !important;
+    @extend .font-md;
+    &::before {
+      content: "\f0ad";
+      position: absolute;
+      top: 2px;
+      left: 10px;
+      font-family: "Font Awesome 5 free";
+      font-weight: 600;
+      font-size: 25px;
+      color: $cBlue;
+    }
+
+    @include mq(lg) {
+      padding: 20px 20px 5px 50px;
+      &::before {
+        top: 10px;
+        left: 10px;
+        font-size: 30px;
       }
     }
   }
@@ -214,13 +247,13 @@
       @extend .font-md;
       font-weight: 800;
       & a {
-        color: $mainColor;
+        color: $main-txt;
       }
     }
   }
   &__box {
-    background: #fcfdff;
-    border: 0.5px solid #e9ecf2;
+    background: $cBgGray;
+
     @extend .mb-sm;
     padding: 10px 10px;
     @include mq(sm) {
@@ -235,7 +268,7 @@
       @extend .font-md;
 
       & > a {
-        color: $mainColor;
+        color: $main-txt;
         @extend .font-md;
       }
     }
@@ -243,7 +276,7 @@
       @extend .mb-sm;
       & li {
         & > a {
-          color: $mainColor;
+          color: $main-txt;
         }
       }
     }
@@ -288,8 +321,11 @@
 
 .page-404 {
   @extend .font-sm;
-  @extend .content-width;
-  padding: 80px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  font-weight: 600;
 
   &__btn {
     padding: 50px 0;

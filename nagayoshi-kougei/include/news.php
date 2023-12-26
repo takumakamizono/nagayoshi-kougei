@@ -18,7 +18,7 @@
                       $news = get_term_by('slug','news','category');
                       $news_link = get_term_link($news,'category')
                       ?>
-                    <a href="<?= esc_url($news_link); ?>"  class="btn slide-bg item">過去の記事を見る</a>
+                    <a href="<?= esc_url($news_link); ?>"  class="btn02 item">過去の記事を見る</a>
                   </div>
                   <?php endif; ?>
                   </div>

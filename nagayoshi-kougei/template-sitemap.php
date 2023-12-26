@@ -25,9 +25,9 @@ Template Post Type: page
             <?php if(have_posts()): ?>
             <?php while(have_posts()):the_post(); ?>
             <div class="page-content">
+              <?php get_template_part('include/breadcrumb'); ?> 
               <div class="page-content__inner">
 
-              <?php get_template_part('include/breadcrumb'); ?> 
               <div class="page-content__blocks">
                   <div class="site-map">
                   <div class="site-map__box">   
@@ -134,38 +134,108 @@ $query = new WP_Query($args);
     </ul>
     
     </div>
-  <div class="site-map__box">
+    <div class="site-map__box">
   <?php
-  $args = array(
-    'post_type' => 'product',
-    'posts_per_page' => -1,
-    'orderby' => 'name',
-    'order' => 'ASC'
-  );
+  // カスタム投稿タイプ
   $post_type = 'product';
-  $post_type_object = get_post_type_object($post_type);
-  
-  $services = get_posts($args);
-  if ($services) {
-    if ($post_type_object) {
-  $post_type_name = $post_type_object->labels->menu_name;
-  $post_type_link = get_post_type_archive_link($post_type);
-  echo '<h2><a href="' . esc_url($post_type_link) . '">'. $post_type_name .'</a></h2>';
-} else {
-  echo '<h2><a href=""></a>Custom Post Type</h2>';
-}
-echo '<ul class="sm-list sm-list-post">';
-    foreach ($services as $post) {
-      setup_postdata($post);
-      echo '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
+
+  // カスタム投稿タイプのカテゴリを取得
+  $taxonomy = 'kind';
+  $categories = get_terms(array(
+    'taxonomy' => $taxonomy,
+    'parent' => 0, // サブカテゴリを除外
+    'hide_empty' => false,
+  ));
+
+  if (!empty($categories) && !is_wp_error($categories)) {
+    echo '<div class="sm-list sm-list-post">';
+    foreach ($categories as $category) {
+      $category_slug = $category->slug;
+
+      // カテゴリごとの投稿を取得
+      $args = array(
+        'post_type' => $post_type,
+        'posts_per_page' => -1,
+        'orderby' => 'title',
+        'order' => 'ASC',
+        'tax_query' => array(
+          array(
+            'taxonomy' => $taxonomy,
+            'field' => 'slug',
+            'terms' => $category_slug,
+          ),
+        ),
+      );
+
+      $posts = get_posts($args);
+
+      if (!empty($posts)) {
+        echo '<div><h2>' . esc_html($category->name) . '</h2><ul class="sm-list sm-list-post">';
+        foreach ($posts as $post) {
+          setup_postdata($post);
+          echo '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
+        }
+        echo '</ul></div>';
+      }
     }
-    echo '</ul>';
-    wp_reset_postdata();
+    echo '</div>';
   } else {
-    echo '<p>No services found.</p>';
+    echo '<p>No categories found.</p>';
   }
   ?>
 </div>
+<div class="site-map__box">
+  <?php
+  // カスタム投稿タイプ
+  $post_type = 'product';
+
+  // カスタム投稿タイプのタグを取得
+  $taxonomy = 'location'; // タグのためのタクソノミー（実際のタグ用のタクソノミー名に置き換えてください）
+  $tags = get_terms(array(
+    'taxonomy' => $taxonomy,
+    'hide_empty' => false,
+  ));
+
+  if (!empty($tags) && !is_wp_error($tags)) {
+    echo '<div class="sm-list sm-list-post">';
+    foreach ($tags as $tag) {
+      $tag_slug = $tag->slug;
+
+      // タグごとの投稿を取得
+      $args = array(
+        'post_type' => $post_type,
+        'posts_per_page' => -1,
+        'orderby' => 'title',
+        'order' => 'ASC',
+        'tax_query' => array(
+          array(
+            'taxonomy' => $taxonomy,
+            'field' => 'slug',
+            'terms' => $tag_slug,
+          ),
+        ),
+      );
+
+      $posts = get_posts($args);
+
+      if (!empty($posts)) {
+        echo '<div><h2>' . esc_html($tag->name) . '</h2><ul class="sm-list sm-list-post">';
+        foreach ($posts as $post) {
+          setup_postdata($post);
+          echo '<li><a href="' . get_permalink() . '">' . get_the_title() . '</a></li>';
+        }
+        echo '</ul></div>';
+      }
+    }
+    echo '</div>';
+  } else {
+    echo '<p>No tags found.</p>';
+  }
+  ?>
+</div>
+
+
+
 </div>
 </div>
                 </div>

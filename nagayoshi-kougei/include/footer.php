@@ -2,7 +2,7 @@
           <div class="footer__inner">
             <div class="footer__left">
           <div class="logo item">
-             <img src="<?= get_template_directory_uri(); ?>/images/logo.gif" alt="">
+             <img src="<?= get_template_directory_uri(); ?>/images/logo.png" alt="">
             </div> 
             <ul class="footer__address">
               <li>〒880-2214 宮崎県宮崎市高岡町高浜2238-4</li>
@@ -40,7 +40,7 @@
                 
                 ?>     
            </nav>
-        <p class="copyright__p">Copyright&copy;2013 Nagayoshi-kougei,inc<span> All Rights Reserved.</span> </p>
+        <p class="copyright__p">Copyright&copy;2024 Nagayoshi-kougei,inc<span> All Rights Reserved.</span> </p>
         </div>
         </div>
         <div id="page_top"><a href="#"></a></div>

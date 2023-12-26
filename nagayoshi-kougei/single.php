@@ -33,36 +33,22 @@
                      <h2><?php the_title(); ?></h2>         
                     </div>
                     <div class="single__content-des">
-                    <div class="single__content-des-img">
-                      <?php if(the_post_thumbnail()): ?>
-                      <?php the_post_thumbnail('medium'); ?>
-                        <?php endif; ?>
-                        </div>
-                  
                         <div class="single__content-text">
                       <?php the_content(); ?>
                        </div>
                     </div>
-                    <div class="postLinks">
-                      <div class="postLinks__link postLinks__link-prev"><?php previous_post_link('戻る%link','%title',true,'') ?></div>
-                      <div class="postLinks__link postLinks__link-next"><?php next_post_link('次へ%link','%title',true,'') ?></div>
-                    </div>
+                  
                   </article >
                   <?php endwhile; ?>   
                 <?php endif; ?> 
-                <?php 
-$cat = get_the_category(); 
-$cat_id = $cat[0]->cat_ID; 
-$cat_name =$cat[0]->cat_name;
-$link = get_category_link($cat_id);
-?>
-<div class="single__list-btn">
-<a class="btn slide-bg" href="<?= esc_url($link); ?>"><?= esc_html($cat_name); ?>の一覧へ戻る</a> 
-</div>
+             
               
               </div>
               <?php get_template_part('include/news-categories'); ?>             
-
+  <ul class="postLinks">
+    
+    <?php custom_category_paging_links(); ?>
+</ul>
               </section>   
             <?php get_template_part('include/contact'); ?>
 

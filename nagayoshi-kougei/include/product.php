@@ -37,7 +37,8 @@ $printing01 = get_field('printing_01_01', 26);
 <section class="product">
     <div class="product__inner">
     <div class="section-titles">
-            <h3 class="main-title">product<span>これまでの制作物の特集！</span></h3>
+            <h3 class="main-title">product</h3>
+            <span class="sub-title">これまでの制作物の特集！</span>
         </div>
         <ul class="menu-list">
             <li class="menu-list__item">

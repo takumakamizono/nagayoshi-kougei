@@ -2,8 +2,8 @@
 <div class="section-titles">
                   <h2 class="main-title">
                   Inquiry completed
-                    <span>お問合せ完了しました</span>
                   </h2>
+                  <span class="sub-title">お問合せ完了しました</span>
                 </div>
     <div class="page-contact__inner">
       <div class="page-contact__desc">

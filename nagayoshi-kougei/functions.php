@@ -1,14 +1,18 @@
 <?php
 define("DIRE", get_template_directory_uri());
-function add_async_defer_script($url) {
-    if (strpos($url, '#async'))
-    return str_replace('#async', '', $url)."' async='async";
-    elseif (strpos($url, '#defer'))
-      return str_replace('#defer', '', $url)."' defer='defer";
-    else
-      return $url;
+/* JS非同期読み込み defer */
+if(!is_admin()){
+  if ( !function_exists( 'defer_parsing_of_js' ) ){
+  function defer_parsing_of_js( $url ) {
+    if ( FALSE === strpos( $url, '.js' ) ) return $url;
+    if ( strpos( $url, 'wp-i18n-js' ) ) return $url;
+    if ( strpos( $url, 'wp-hooks-js' ) ) return $url;
+    
+    return str_replace( " src", " defer src", $url );
   }
-  add_filter('clean_url', 'add_async_defer_script', 11, 1);
+  }
+  add_filter( 'script_loader_tag', 'defer_parsing_of_js', 10 , 2);
+  }
    
 
   function enqueue_scripts() {
@@ -23,19 +27,19 @@ function add_async_defer_script($url) {
 
     wp_enqueue_style('style.css',DIRE.'/style.css',array(),  $style_version);
     wp_enqueue_script('fontawesome','https://kit.fontawesome.com/2bf622374b.js', false);
-    wp_enqueue_script('youtube.min.js', DIRE.  '/scripts/libs/youtube.min.js#defer', array(), $version);
+    wp_enqueue_script('youtube.min.js', DIRE.  '/scripts/libs/youtube.min.js', array(), $version,false);
     wp_enqueue_script('jquery-min', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js', false);
-    wp_enqueue_script('jquery.js', DIRE.  '/scripts/libs/jquery.min.js#defer', array(), $version);
+    wp_enqueue_script('jquery.js', DIRE.  '/scripts/libs/jquery.min.js', array(), $version,false);
     wp_enqueue_script('slick.js', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js',false);
 
-    wp_enqueue_script('scroll-polyfill.js', DIRE.  '/scripts/vendors/scroll-polyfill.js#defer', array(), $version);
-    wp_enqueue_script('gsap.min.js', DIRE.  '/scripts/vendors/gsap.min.js#defer', array(), $version);
-    wp_enqueue_script('swiper-bundle.min.js', DIRE.  '/scripts/vendors/swiper-bundle.min.js#defer', array(), $version);
-    wp_enqueue_script('hero-slider.js', DIRE.  '/scripts/libs/hero-slider.min.js#defer', array(), $version);
-    wp_enqueue_script('scroll.js', DIRE.  '/scripts/libs/scroll.min.js#defer', array(), $version);
-    wp_enqueue_script('text-animation.js', DIRE.  '/scripts/libs/text-animation.min.js#defer', array(), $version);
-    wp_enqueue_script('mobile-menu.js', DIRE.  '/scripts/libs/mobile-menu.min.js#defer', array(), $version);
-    wp_enqueue_script('main.js', DIRE.  '/scripts/main.min.js#defer', array(), $script_version);
+    wp_enqueue_script('scroll-polyfill.js', DIRE.  '/scripts/vendors/scroll-polyfill.js', array(), $version,false);
+    wp_enqueue_script('gsap.min.js', DIRE.  '/scripts/vendors/gsap.min.js', array(), $version,false);
+    wp_enqueue_script('swiper-bundle.min.js', DIRE.  '/scripts/vendors/swiper-bundle.min.js', array(), $version,false);
+    wp_enqueue_script('hero-slider.js', DIRE.  '/scripts/libs/hero-slider.min.js', array(), $version,false);
+    wp_enqueue_script('scroll.js', DIRE.  '/scripts/libs/scroll.min.js', array(), $version,false);
+    wp_enqueue_script('text-animation.js', DIRE.  '/scripts/libs/text-animation.min.js', array(), $version,false);
+    wp_enqueue_script('mobile-menu.js', DIRE.  '/scripts/libs/mobile-menu.min.js', array(), $version,false);
+    wp_enqueue_script('main.js', DIRE.  '/scripts/main.min.js', array(), $script_version);
   }
   add_action('wp_enqueue_scripts', 'enqueue_scripts');
   
@@ -70,6 +74,27 @@ foreach($cats as $cat){
         echo esc_html($cat->name);
         echo '</li>';
     }
+  }
+}
+
+//custom-taxonomy-label-tag
+function custom_taxonomy_label_tag() {
+  $taxonomy = 'location'; // カスタムタクソノミーのスラッグ
+
+  // 現在の投稿のIDを取得
+  $post_id = get_the_ID();
+
+  // 現在の投稿に関連付けられたタームの情報を取得
+  $terms = get_the_terms($post_id, $taxonomy);
+
+  if (!empty($terms) && !is_wp_error($terms)) {
+   
+    foreach ($terms as $term) {
+      echo '<li class="bg-yellow">';
+      echo esc_html($term->name);
+      echo '</li>';
+    }
+   
   }
 }
 
@@ -152,4 +177,51 @@ add_filter('use_block_editor_for_post',function($use_block_editor,$post){
   }
   return $use_block_editor;
 },10,2);
+
+
+
+function custom_category_paging_links() {
+  $cat = get_the_category();
+  if ($cat) {
+      $cat_id = $cat[0]->cat_ID;
+      $cat_name = $cat[0]->cat_name;
+      $link = get_category_link($cat_id);
+
+      $cat_posts = get_posts(array(
+          'cat' => $cat_id,
+          'posts_per_page' => -1,
+          'order' => 'ASC',
+          'orderby' => 'date'
+      ));
+      
+      $current_post_index = 0;
+      $current_post_id = get_the_ID();
+      
+      // Find the index of the current post in the sorted category posts
+      foreach ($cat_posts as $index => $post) {
+          if ($post->ID == $current_post_id) {
+              $current_post_index = $index;
+              break;
+          }
+      }
+      
+      
+      
+      // Define $prev_post and $next_post based on conditions
+      $prev_post = ($current_post_index > 0) ? $cat_posts[$current_post_index - 1] : null;
+      $next_post = ($current_post_index < count($cat_posts) - 1) ? $cat_posts[$current_post_index + 1] : null;
+      
+      if ($prev_post) {
+          echo '<li class="postLinks__link postLinks__link-prev"><a href="' . get_permalink($prev_post->ID) . '">前へ</a></li>';
+      }
+      // Output the "Back to Category" button
+      echo '<li class="postLinks__link single__list-btn centered">';
+      echo '<a class="btn slide-bg" href="' . esc_url($link) . '">' . esc_html($cat_name) . 'の一覧へ戻る</a>';
+      echo '</li>';
+      
+      if ($next_post) {
+          echo '<li class="postLinks__link postLinks__link-next"><a href="' . get_permalink($next_post->ID) . '">次へ</a></li>';
+      }
+  }
+}
 

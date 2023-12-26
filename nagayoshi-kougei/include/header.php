@@ -2,7 +2,7 @@
             <h1 class="logo item">
               <a href="<?= esc_url(home_url('/')); ?>">
              
-              <img src="<?= get_template_directory_uri(); ?>/images/logo.gif" alt="">
+              <img src="<?= get_template_directory_uri(); ?>/images/logo.png" alt="">
              </a>
            </h1>
             <nav class="header__nav">

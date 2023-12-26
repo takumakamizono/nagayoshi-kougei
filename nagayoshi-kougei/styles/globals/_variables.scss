@@ -12,3 +12,12 @@ $cBtnColor: #e10000;
 $cTextRed: #e10000;
 $main-txt: #333;
 $lightGray: #8888;
+$cYellow: #40f000;
+$cBlue: #44ade4;
+
+.bg-gray {
+  background: $cBgGray;
+}
+.bg-yellow {
+  background-color: $cYellow !important;
+}

@@ -4,12 +4,6 @@ body {
   font-family: "Roboto Condensed", "Noto Sans JP", sans-serif;
 }
 
-// img {
-//   width: 100%;
-//   max-width: 100%;
-//   vertical-align: bottom;
-// }
-
 .mb-sm {
   margin-bottom: 16px !important;
   @include mq(lg) {
@@ -153,12 +147,14 @@ body {
 
 .section-titles-left {
   text-align: left;
+  @extend .mb-sm;
 }
 
 .main-title {
+  text-transform: uppercase;
   @extend .font-lg;
   margin-bottom: 0;
-  display: block;
+  display: inline-block;
   font-weight: 600;
   color: $main-txt;
   line-height: 1;
@@ -166,29 +162,24 @@ body {
   &::before {
     content: "";
     position: absolute;
-    top: -16px;
-    left: 0;
-    right: 0;
+    top: -22px;
+
+    right: -40px;
     margin: 0 auto;
-    width: 30px;
-    height: 10px;
-    background-size: cover;
-    background-image: url(./images/icon-pikapika.png);
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-image: url(./images/title_icon02.png);
+    background-repeat: no-repeat;
 
     @include mq(lg) {
-      top: -31px;
       width: 55px;
-      height: 20px;
+      height: 55px;
     }
-  }
-  & > span {
-    display: block;
-    font-size: clamp(10px, 2vw, 36%);
-    letter-spacing: 0;
-    padding-top: clamp(10px, 2vw, 16px);
   }
 }
 .main-title-left {
+  text-transform: uppercase;
   @extend .font-lg;
   margin-bottom: 0;
   display: block;
@@ -210,10 +201,13 @@ body {
 }
 
 .sub-title {
-  @extend .font-md;
-  @extend .mb-sm;
+  display: block;
+  font-size: clamp(12px, 2vw, 36%);
+  padding-top: clamp(5px, 2vw, 7px);
+
   color: $main-txt;
-  font-weight: 600;
+  font-weight: bold;
+  position: relative;
 }
 
 #page_top {
@@ -245,63 +239,6 @@ body {
       left: 0;
       margin: auto;
       text-align: center;
-    }
-  }
-}
-
-.breadcrumb {
-  color: $main-txt;
-  font-size: 10px;
-  &__inner {
-    @extend .content-width;
-    padding: 10px 0 40px 0;
-    @include mq(lg) {
-      padding: 10px 0 80px 0;
-    }
-    & i {
-      margin: 0 10px;
-    }
-    & a {
-      color: $main-txt;
-    }
-  }
-}
-
-.postLinks {
-  @extend .flex;
-  justify-content: space-between;
-
-  @extend .mb-md;
-  &__link {
-    border-top: 1px solid $lightGray;
-    border-bottom: 1px solid $lightGray;
-    flex-basis: 50%;
-    padding: 20px 0;
-    border-right: 1px solid $lightGray;
-    &:first-child {
-      border-right: none;
-      border-bottom: none;
-      @include mq(md) {
-        border-right: 1px solid $lightGray;
-        border-bottom: 1px solid $lightGray;
-      }
-    }
-    &:last-child {
-      border-right: none;
-    }
-    & > a {
-      color: $main-txt;
-      font-size: 12px;
-      padding: 20px 2px;
-      text-decoration: none;
-      width: 100%;
-      display: inline-block;
-    }
-    &-prev {
-      text-align: left;
-    }
-    &-next {
-      text-align: right;
     }
   }
 }
@@ -568,7 +505,7 @@ body {
   }
   & dd {
     padding: 10px 0 11px 80px;
-    border-bottom: 1px solid;
+    border-bottom: 1px solid white;
     @include mq(md) {
     }
 
@@ -581,19 +518,19 @@ body {
 
 .cat {
   min-width: 55px;
-  display: flex;
-  flex-wrap: wrap;
+
   font-size: 10px;
   font-weight: 600;
   margin-right: 6px;
   padding: 2px 4px;
   border-radius: 2px;
   flex-basis: 18%;
+  display: inline-block;
 
   & li {
     list-style-type: none;
     text-align: center;
-    background-color: $mainColor;
+    background-color: $cBlue;
     color: $cWhite;
     padding: 2px 4px;
     border-radius: 2px;
@@ -603,5 +540,147 @@ body {
     &:last-child {
       margin-right: 0;
     }
+  }
+}
+
+.breadcrumb {
+  background: $cBgGray;
+  color: $main-txt;
+  font-size: 10px;
+  &__inner {
+    @extend .content-width;
+    padding: 10px 0 10px 0;
+    @include mq(lg) {
+      padding: 30px 0 30px 0;
+    }
+    & i {
+      margin: 0 10px;
+    }
+    & a {
+      color: $main-txt;
+    }
+  }
+}
+
+.postLinks {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  max-width: 300px;
+  margin: 0 auto;
+  width: 100%;
+  &__link {
+    flex: 1;
+    text-align: center;
+    & .btn {
+      color: $cWhite;
+      font-size: 12px;
+      padding: 20px 2px;
+      text-decoration: none;
+      width: 100%;
+      display: inline-block;
+      min-width: 160px;
+    }
+    &-prev {
+      position: relative;
+      &::after {
+        content: "\f061";
+        font-family: "Font Awesome 5 free";
+        font-weight: 600;
+        position: absolute;
+        left: 0px;
+        top: 18px;
+        transform: rotate(180deg);
+      }
+    }
+    &-next {
+      position: relative;
+      &::after {
+        content: "\f061";
+        font-family: "Font Awesome 5 free";
+        font-weight: 600;
+        position: absolute;
+        right: 0px;
+        top: 18px;
+      }
+    }
+    &-prev,
+    &-next {
+      text-align: center;
+      & > a {
+        font-size: 14px;
+        padding: 20px 2px;
+        text-decoration: none;
+        width: 100%;
+        display: inline-block;
+        color: $main-txt;
+      }
+    }
+  }
+}
+
+.pastWork-postLinks {
+  @extend .content-width1000;
+  @extend .flex;
+  justify-content: space-between;
+  list-style: none;
+
+  @extend .mb-md;
+  @extend .pt-md;
+  &__link {
+    border-top: 1px solid $lightGray;
+    border-bottom: 1px solid $lightGray;
+    flex-basis: 50%;
+
+    border-right: 1px solid $lightGray;
+    &:first-child {
+      border-right: none;
+      border-bottom: none;
+      @include mq(md) {
+        border-right: 1px solid $lightGray;
+        border-bottom: 1px solid $lightGray;
+      }
+    }
+    &:last-child {
+      border-right: none;
+    }
+    & > a {
+      color: $main-txt;
+      font-size: 14px;
+      text-decoration: none;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      justify-content: space-between;
+    }
+
+    &-next {
+      & > a {
+        @include mq(md) {
+          flex-direction: row-reverse;
+        }
+      }
+    }
+    &-img {
+      display: inline-block;
+      height: 100%;
+      & > img {
+        object-fit: contain;
+        height: 100%;
+      }
+    }
+    &-txt {
+      text-align: center;
+      display: inline-block;
+      width: 100%;
+    }
+  }
+}
+.br-lg {
+  display: block;
+  @include mq(lg) {
+    display: none;
   }
 }

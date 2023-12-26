@@ -24,7 +24,7 @@
                     <div class="news__inner news-flex__inner">               
                     <ul class="news__list appear right"> 
                     <?php while(have_posts()):the_post(); ?>
-                    <?php get_template_part('include/notice-inside'); ?> 
+                    <?php get_template_part('include/news-inside'); ?> 
                 <?php endwhile; ?>  
                 </ul>      
                 <?php if(function_exists('wp_pagenavi')){wp_pagenavi();}  ?>
